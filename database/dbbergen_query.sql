@@ -1,0 +1,1 @@
+select * from Activitytype order by idActivitytype
