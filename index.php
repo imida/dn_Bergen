@@ -1,32 +1,48 @@
+<!DOCTYPE html>
 <?php
+        // put your code here
+?>
 
-/* connection with database */
+<html>
+<head>
+<style>
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: sound; }
 
-$dbhost="localhost";
-$dbport="8889";
-$dbuser ="root";
-$dbpassword ="root";
-$dbdatabase= "bergendb";
-
-$connection = new mysqli($dbhost, $dbuser, $dbpassword, $dbdatabase, $dbport);
-
-if ($connection->connect_errno) 
-{
-    exit("failed; ".$connection->connect_error); 
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'menu '
+    'main' 
+    'sound';
+  grid-gap: 0px;
+  background-color: #2196F3;
+  padding: 0px;
 }
 
-$query = "select * from Activitytype order by idActivitytype";
-$resultObj = $connection->query($query);
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
 
-if ($resultObj->num_rows >0) 
-{ 
-    while ($singleRowFromQuery =$resultObj->fetch_assoc())
-    {
-        print_r($singleRowFromQuery);
-    }
-}  
-    
-echo "connected";
+<div class="grid-container">
+  <div class="item1"> 
+        <?php
+            require 'header.php';        
+        ?>
+  </div>
+  <div class="item2">Menu</div>
+  <div class="item3">Main</div>  
+  <div class="item4">sound</div>
+</div>
 
-$connection->close();
-
+</body>
+</html>
