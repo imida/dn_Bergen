@@ -3,46 +3,93 @@
         // put your code here
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+<title>CSS Website Layout</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.item1 { grid-area: header; }
-.item2 { grid-area: menu; }
-.item3 { grid-area: main; }
-.item4 { grid-area: sound; }
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    'header'
-    'menu '
-    'main' 
-    'sound';
-  grid-gap: 0px;
-  background-color: #2196F3;
-  padding: 0px;
+* {
+  box-sizing: border-box;
 }
 
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
+body {
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  background-color: rgb(0, 119, 179);
+  padding: 20px;
   text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
 }
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: rgb(191, 191, 191);
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: left;
+  display: block;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Middle column */
+.column.middle {
+  width: 100%;
+  text-align: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 </style>
 </head>
 <body>
 
-<div class="grid-container">
-  <div class="item1"> 
-        <?php
-            require 'header.php';        
-        ?>
-  </div>
-  <div class="item2">Menu</div>
-  <div class="item3">Main</div>  
-  <div class="item4">sound</div>
+<div class="header">
+  <h1>Header</h1>
 </div>
 
+<div class="topnav">
+  <a href="#">Hjem</a>
+  <a href="#">Serverdigheter</a>
+  <a href="#">Spisesteder</a>
+  <a href="#">Fjell</a>
+  <a href="#">Vær og klima</a>
+   <a href="#" style="float:right">Logg inn</a>
+</div>
+  
+  <div class="column middle">
+    <h2>Main Content</h2>
+    <p>midten</p>
+    <p>Nystemnten</p>
+   
+  </div>
+
+
+  
 </body>
-</html>
