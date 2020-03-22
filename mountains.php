@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<?php
-        // put your code here
-?>
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>CSS Website Layout</title>
@@ -47,16 +42,11 @@ body {
   color: black;
 }
 
-/* Create three unequal columns that floats next to each other */
+/* Create three equal columns that floats next to each other */
 .column {
   float: left;
-  padding: 10px;
-}
-
-/* Middle column */
-.column.middle {
-  width: 100%;
-  text-align: center;
+  width: 50%;
+  padding: 15px;
 }
 
 /* Clear floats after the columns */
@@ -66,12 +56,18 @@ body {
   clear: both;
 }
 
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>Header</h1>
+  <h1>Logo</h1>
 </div>
 
 <div class="topnav">
@@ -82,14 +78,22 @@ body {
   <a href="weather.php">Vær og klima</a>
   <a href="login.php" style="float:right">Logg inn</a>
 </div>
-  
-  <div class="column middle">
-    <h2>Main Content</h2>
-    <p>midten</p>
-    <p>Nystemnten</p>
-   
+
+
+<div class="row">
+
+  <div class="column">
+
+    <h2>1</h2>
+    <p>hei</p>
   </div>
-
-
   
+  <div class="column">
+    <h2>2</h2>
+    <p>hei igjen</p>
+  </div>
+  
+  </div> 
+
 </body>
+

@@ -14,7 +14,7 @@ if ($connection->connect_errno)
 {
     exit("failed; ".$connection->connect_error); 
 }
-
+/*
 $query = "select * from Activitytype order by idActivitytype";
 $resultObj = $connection->query($query);
 
@@ -30,5 +30,5 @@ echo "connected";
 
 $connection->close();
 
-
+*/
 
