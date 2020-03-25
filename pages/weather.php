@@ -70,9 +70,7 @@ body {
 </head>
 <body>
 
-<div class="header">
-  <h1>Header</h1>
-</div>
+<?php    include 'includes/header.php';?>
 
 <div class="topnav">
   <a href="index.php">Hjem</a>

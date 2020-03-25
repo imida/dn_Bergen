@@ -2,7 +2,7 @@
 
 if (isset($_POST['login-submit'])) {
 
-    require 'queries.php';
+    require '../queries.php';
 
     $mailuid = $_POST['mailuid'];
     $password = $_POST['pwd'];
@@ -23,14 +23,14 @@ if (isset($_POST['login-submit'])) {
             if ($row = mysql_fetch_assoc($result)) {
                 $pwdCheck = password_vertify($password, $row['pwdUser']);
                 if ($pwdCheck == false) {
-                    header("Location: ../index.php?error?=wrongpwd");
+                    header("Location: ../index.php?error=wrongpwd");
                     exit();
                 } else if ($pwdCheck == true) {
                     session_start();
                     $_SESSION['userId'] = $row['idUsers'];
                     $_SESSION['userUid'] = $row['uidUsers'];
 
-                    header("Location: ../index.php?login?=success");
+                    header("Location: ../index.php?login=success");
                     exit();
                 }
             } else {

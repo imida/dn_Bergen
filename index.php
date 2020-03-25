@@ -6,68 +6,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>CSS Website Layout</title>
+<title>Bergen</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
-/* Style the header */
-.header {
-  background-color: rgb(0, 119, 179);
-  padding: 20px;
-  text-align: center;
-}
-b
-/* Style the top navigation bar */
-.topnav {
-  overflow: hidden;
-  background-color: rgb(191, 191, 191);
-}
-
-/* Style the topnav links */
-.topnav a {
-  float: left;
-  display: block;
-  color: #000000;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  
-}
-
-/* Change color on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Create three unequal columns that floats next to each other */
-.column {
-  float: left;
-  padding: 10px;
-}
-
-/* Middle column */
-.column.middle {
-  width: 100%;
-  text-align: center;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-</style>
+<link rel="stylesheet" href="includes/bergen.css">
 </head>
 <body>
 
@@ -80,14 +22,31 @@ b
   <a href="activities.php">Spisesteder</a>
   <a href="mountains.php">Fjell</a>
   <a href="weather.php">Vær og klima</a>
-  <a href="login.php" style="float:right">Logg inn</a>
+  <a href="?page=login" style="float:right">Logg inn</a>
 </div>
   
   <div class="column middle">
     <h2>Main Content</h2>
-    <p>midten</p>
-    <p>Nystemnten</p>
-   
+    <?php
+    $page = $_GET["page"];
+    $error = $_GET["error"];
+    echo 'Feil (dust): ' . $error; 
+    if ($page == "login") {
+        ?>
+                <form action="user/login.inc.php" method="post">
+                    <input type="text" name="mailuid" placeholder="Username/e-mail">
+                    <input type="password" name="pwd" placeholder="password">
+                    <button type="submit" name="login-submit">login</button>
+                </form>
+                <a href="signup.php">Signup </a>
+                <form action="user/logout.inc.php" method="post">
+                    <button type="submit" name="logout-submit">Logout</button>
+                </form>
+                
+     <?php
+            
+     } 
+    ?>
   </div>
 
 
