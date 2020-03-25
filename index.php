@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-        // put your code here
+   
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +39,7 @@ b
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  
 }
 
 /* Change color on hover */
@@ -70,9 +71,8 @@ b
 </head>
 <body>
 
-<div class="header">
-  <h1>Header</h1>
-</div>
+<?php    include 'includes/header.php';?>
+
 
 <div class="topnav">
   <a href="index.php">Hjem</a>
