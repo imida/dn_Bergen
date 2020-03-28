@@ -18,10 +18,11 @@
 
 <div class="topnav">
   <a href="index.php">Hjem</a>
-  <a href="activities.php">Serverdigheter</a>
-  <a href="activities.php">Spisesteder</a>
-  <a href="mountains.php">Fjell</a>
+  <a href="?page=activities&type=1">Serverdigheter</a>
+  <a href="?page=activities&type=2">Spisesteder</a>
+  <a href="?page=activities&type=3">Fjell</a>
   <a href="weather.php">Vær og klima</a>
+  <a href="?page=map">Kart</a>
   <a href="?page=login" style="float:right">Logg inn</a>
 </div>
   
@@ -46,6 +47,12 @@
      <?php
             
      } 
+     elseif ($page == "map") {
+         include 'pages/map.php';
+     }
+     elseif ($page == "activities") {
+         include 'pages/activities.php';
+     }
     ?>
   </div>
 
