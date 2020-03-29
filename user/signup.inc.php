@@ -59,7 +59,6 @@ if (isset($_POST['signup-submit'])) {
                 }
 
                 mysql_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $hashedPwd);
-                 /* må væew i samme rekkefølge som i den forrige else statmenten */
                 mysql_stmt_execute($stmt);
                 mysql_stmt_close($stmt);
                 mysql_close($connection);

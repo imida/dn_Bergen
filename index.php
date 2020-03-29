@@ -14,6 +14,12 @@
 <body>
 
 <?php    include 'includes/header.php';?>
+<?php    
+    session_start();
+    $loginout_href = isset($_SESSION['idUser']) ? '?page=logout' : '?page=login';
+    $loginout_text = isset($_SESSION['idUser']) ? 'Logg ut' : 'Logg inn';
+
+?>
 
 
 <div class="topnav">
@@ -23,7 +29,9 @@
   <a href="?page=activities&type=3">Fjell</a>
   <a href="weather.php">Vær og klima</a>
   <a href="?page=map">Kart</a>
-  <a href="?page=login" style="float:right">Logg inn</a>
+  <?php 
+  echo '<a href="'.$loginout_href.'" style="float:right">'.$loginout_text.'</a>';
+  ?>
 </div>
   
   <div class="column middle">
@@ -31,6 +39,11 @@
     <?php
     $page = $_GET["page"];
     $error = $_GET["error"];
+    
+    echo 'Session here:';
+    echo '<pre>';
+    print_r ($_SESSION);
+    echo '</pre>';
     echo 'Feil (dust): ' . $error; 
     if ($page == "login") {
         ?>
@@ -39,10 +52,7 @@
                     <input type="password" name="pwd" placeholder="password">
                     <button type="submit" name="login-submit">login</button>
                 </form>
-                <a href="signup.php">Signup </a>
-                <form action="user/logout.inc.php" method="post">
-                    <button type="submit" name="logout-submit">Logout</button>
-                </form>
+                <a href="?page=signup">Signup </a>
                 
      <?php
             
@@ -52,6 +62,13 @@
      }
      elseif ($page == "activities") {
          include 'pages/activities.php';
+     }
+     elseif ($page == "logout") {
+         session_destroy();
+         header("Location: index.php");
+     }
+     elseif ($page == "signup") {
+         include 'user/signup.php';
      }
     ?>
   </div>

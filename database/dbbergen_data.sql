@@ -27,14 +27,12 @@ VALUES
 
 
 INSERT INTO `bergendb`.`User`
-(`idUser`,
-`Firstname`,
+(`Firstname`,
 `Lastname`,
 `Email`,
 `Password`)
 VALUES
-(1,
-'Ida',
+('Ida',
 'Lundstad',
 'idalun3@asvg.no',
 'Mio');
