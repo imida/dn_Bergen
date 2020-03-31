@@ -8,8 +8,8 @@
                 <input type="text" name="uid" placeholder="Username">
                 <input type="text" name="mail" placeholder="E-mail">
                 <input type="password" name="pwd" placeholder="Passord">
-                <input type="password" name="pwd-repeat" placeholder="Repeat password">
-                <button type="submit" name="signup.submit">Signup</button>
+                <input type="password" name="pwdrep" placeholder="Repeat password">
+                <button type="submit" name="signup" value='signup'>Signup</button>
             </form>
         </section>
     </div>
