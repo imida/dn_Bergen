@@ -29,58 +29,33 @@
   <a href="?page=activities&type=3">Fjell</a>
   <a href="?page=weather">Vær og klima</a>
   <a href="?page=map">Kart</a>
+  <a href="?page=laws" style="float:right">Lover</a>
   <?php 
   echo '<a href="'.$loginout_href.'" style="float:right">'.$loginout_text.'</a>';
   ?>
 </div>
   
-  <div class="column middle">
-    <h2>Main Content</h2>
     <?php
     $page = $_GET["page"];
     $error = $_GET["error"];
-    
-    echo 'Session here:';
-    echo '<pre>';
-    print_r ($_SESSION);
-    echo '</pre>';
-        
-    echo 'Post here:';
-    echo '<pre>';
-    print_r ($_POST);
-    echo '</pre>';
-    echo 'Feil (dust): ' . $error; 
+     
     if ($page == "login") {
-        ?>
-                <form action="user/login.inc.php" method="post">
-                    <input type="text" name="mailuid" placeholder="Username/e-mail">
-                    <input type="password" name="pwd" placeholder="password">
-                    <button type="submit" name="login-submit">login</button>
-                </form>
-                <a href="?page=signup">Signup </a>
-                
-     <?php
-            
-     } 
-     elseif ($page == "map") {
-         include 'pages/map.php';
-     }
-     elseif ($page == "activities") {
-         include 'pages/activities.php';
-     }
-     elseif ($page == "weather") {
-         include 'pages/weather/yr.php';
-     }
-     elseif ($page == "logout") {
-         session_destroy();
-         header("Location: index.php");
-     }
-     elseif ($page == "signup") {
-         include 'user/signup.php';
-     }
-      
-    ?>
-  </div>
+        include 'user/login.php';
+    } elseif ($page == "map") {
+        include 'pages/map.php';
+    } elseif ($page == "activities") {
+        include 'pages/activities.php';
+    } elseif ($page == "weather") {
+        include 'pages/weather/yr.php';
+    } elseif ($page == "laws") {
+        include 'pages/laws.php';
+    } elseif ($page == "logout") {
+        session_destroy();
+        header("Location: index.php");
+    } elseif ($page == "signup") {
+        include 'user/signup.php';
+    }
+?>
 
 
   
