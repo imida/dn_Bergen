@@ -186,7 +186,7 @@ INSERT INTO `bergendb`.`Activity`
 `Activitytype_idActivitytype`)
 VALUES
 (1,
-'',
+'For å komme opp på Fløyen (400 moh) kan man enten ta Fløibanen eller gå opp langs Skansen. Fra toppen kan man se utover Bergen og alle båtene som ligger ved kysten. På toppen finner man også en restaurant og flere aktiviteter for små barn som lekeplass og klatrepark. ',
 'Fløyen',
 'bilde',
 60.3983,

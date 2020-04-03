@@ -36,6 +36,7 @@
 </div>
   
     <?php
+    /* Kobler sider med link */
     $page = $_GET["page"];
     $error = $_GET["error"];
      
