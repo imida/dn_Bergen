@@ -1,77 +1,62 @@
 <?php
 
 if (isset($_POST['signup'])) {
-    
+
+    /* Henter ut verdiene fra "signup.php" */
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
-    $email = $_POST['mail'];
+    $email = $_POST['email'];
     $password = $_POST['pwd'];
     $passwordRepeat = $_POST['pwdrep'];
-    $hashedPwd ='';
-     
-    if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($passwordrepeat))  {
-        header("Location: ../index.php?error=emptyfields&uid=".$username."&mail=".$email);
-        exit();
-    }
-    else if (!filter_var($email,FILTER_VALIDATE_EMAIL) &&(!preg_match("/^[a-zA-Z0-9]*$/", $firstname))) {
-        header("Location: ../index.php?error=invalidmail&uid=".$firstname);
-        exit();
+    $hashedPwd = '';
 
-    }
-    else if (!filter_var($email,FILTER_VALIDATE_EMAIL)) {
-            header("Location: ../index.php?error=invalidmail&uid=".$firstname);
+    /* sjekker om alle feltene er fylt ut */
+    if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($passwordRepeat)) {
+        header("Location: ../index.php?error=emptyfields&uid=" . $username . "&mail=" . $email);
         exit();
     }
-    else if (!preg_match("/^[a-zA-Z0-9]*$/", $firstname)) {
-            header("Location: ../index.php?error=invaliduid&mail=".$email);
+    /* sjekker at email adressen bare består av gyldige tegn */ else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header("Location: ../index.php?error=invalidmail&uid=" . $firstname);
         exit();
-    } 
-    else if ($password !== $passwordRepeat) {
-        header("Location: ../index.php?error=passwordcheckuid=".$username."&email=".$email); 
     }
-    else {
-        require 'queries.php';
-        $sql = "SELECT uidUsers FROM user WHERE email=?"; 
-        $stmt = mysql_stmt_init($connection);
-        if (!mysql_stmt_prepare($stmt, $sql)) {
-            header("Location: ../index.php?error=sqlerror");
-            exit();     
-        }
-        else {
-            mysql_stmt_bind_param($stmt, "s", $firstname);
-            mysql_stmt_execute($stmt);
-            mysql_stmt_store_result($stmt);
-            $resultCheck = mysql_stmt_num_rows($stmt);
-            if (condition > 0){
-                 header("Location: ../index.php?error=usertaken&mail=".$email);
-                exit();  
-            }
-            else {
-               $sql = "INSERT INTO users (idUser, Firstname, Lastname, Email, Password) VALUES (1, ?, ?, ?, ?)";  
-               $stmt = mysql_stmt_init($connection);
-               if (!mysql_stmt_prepare($stmt, $sql)) {
-                 header("Location: ../index.php?error=sqlerror");
-                exit();     
-                } 
-                else { 
-                    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-                }
+    /* sjekker om passord og det gjantakende passordet er det samme */ else if ($password !== $passwordRepeat) {
+        header("Location: ../index.php?error=passwordcheckuid=" . $username . "&email=" . $email);
+    } else {
+        /* Sender informasjonen til databasen og ser om emailen finnes */
+        require '../database.php';
+        $sql = "SELECT * FROM User WHERE Email=?";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
 
-                mysql_stmt_bind_param($stmt, "ssss", $firstname, $lastname, $email, $hashedPwd);
-                mysql_stmt_execute($stmt);
-                mysql_stmt_close($stmt);
-                mysql_close($connection);
-                header("Location: ../index.php?signup=success");
-                exit(); 
-            }
+        $resultObj = $stmt->get_result();
+        $row = $resultObj->fetch_assoc();
+
+        /* Nektes adgang om mailen finnes */
+        if ($row != null) {
+            $stmt->close();
+            $connection->close();
+            header("Location: ../index.php?error=userexist");
+        } else {
+            $stmt->close();
+
+            /* Emailen finnes ikke fra før av og databasen blir oppdatert */
+            $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+            $sql_insert = "INSERT INTO `bergendb`.`User`(`Firstname`,`Lastname`,`Email`,`Password`)
+                    VALUES (?, ?, ?, ?)";
+            $stmt_insert = $connection->prepare($sql);
+            $stmt_insert->bind_param("ssss", $firstname, $lastname, $email, $hashedPwd);
+            $stmt_insert->execute();
+            $stmt_insert->close();
+            $connection->close();
+
+            /* Brukeren er opprettet og blir nå logget inn */
+            require 'login.inc.php';
         }
     }
-
-   
-}
-else {
+} else {
     header("Location: ../index.php?error=noSignup");
-        exit(); 
+    exit();
 }
 
     

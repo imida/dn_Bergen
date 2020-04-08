@@ -39,7 +39,11 @@
     /* Kobler sider med link */
     $page = $_GET["page"];
     $error = $_GET["error"];
-     
+    
+    if (isset($error)) {
+        echo 'Det ble feil: '.$error; 
+    }
+    
     if ($page == "login") {
         include 'user/login.php';
     } elseif ($page == "map") {
