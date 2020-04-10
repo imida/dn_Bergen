@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<?php
-   
-?>
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Bergen</title>
@@ -13,11 +9,15 @@
 </head>
 <body>
 
-<?php    include 'includes/header.php';?>
-<?php    
+<?php  
+
     session_start();
+
+    include 'includes/header.php';
+    
     $loginout_href = isset($_SESSION['idUser']) ? '?page=logout' : '?page=login';
     $loginout_text = isset($_SESSION['idUser']) ? 'Logg ut' : 'Logg inn';
+    
 
 ?>
 
@@ -39,6 +39,10 @@
     /* Kobler sider med link */
     $page = $_GET["page"];
     $error = $_GET["error"];
+    
+    if (isset($_SESSION['Firstname'])) { 
+        echo "<p>Hei, ".$_SESSION['Firstname']."</p>";
+    }
     
     if (isset($error)) {
         echo 'Det ble feil: '.$error; 

@@ -41,32 +41,20 @@ if (isset($_POST['signup'])) {
                 header("Location: ../index.php?error=userexist");
             } else {
                 $stmt->close();
-                $connection->close();
-                require '../database.php';
-                echo "Connected - ";
-
+ 
                 /* Emailen finnes ikke fra før av og databasen blir oppdatert */
                 $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
                 $sql_insert = "INSERT INTO `User` (`Firstname`, `Lastname`, `Email`, `Password`) VALUES (?, ?, ?, ?)";
-                //$sql_insert = "INSERT INTO User VALUES (?, ?, ?, ?)";
-                
                 $stmt_insert = $connection->prepare($sql_insert);
-                $bind_value = $stmt_insert->bind_param("ssss", $firstname, $lastname, $email, $hashedPwd);
-                if (!$bind_value) {
-                    echo "Is problem with bind values?: (" . $bind_value->errno . ") " . $bind_value->error;
-                } else {
-                    echo "Bind ok - ";
-                }
-                $query_result = $stmt_insert->execute();
-                echo " Query result: " . $query_result;
-                $connection->commit();
-                echo "Committed - ";
+                $stmt_insert->bind_param("ssss", $firstname, $lastname, $email, $hashedPwd);
+                
+                $stmt_insert->execute();
+                
                 $stmt_insert->close();
                 $connection->close();
-                echo "Closed - ";
 
                 /* Brukeren er opprettet og blir nå logget inn */
-                //require 'login.inc.php';
+                require 'login.inc.php';
             }
         } catch (Exception $ex) {
             echo 'Exception occurred ' . $ex->getTraceAsString();

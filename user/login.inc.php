@@ -38,7 +38,7 @@ if (isset($_POST['login-submit']) || isset($_POST['signup'])) {
                 $_SESSION['Firstname'] = $row['Firstname'];
                 $_SESSION['Lastname'] = $row['Lastname'];
                 $_SESSION['Email'] = $row['Email'];
-                header("Location: ../index.php?error=got this far: " . $row['Firstname']);
+                header("Location: ../index.php");
             }
         } 
         else {
