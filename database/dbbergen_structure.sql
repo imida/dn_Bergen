@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `bergendb`.`User` (
   `Firstname` VARCHAR(45) NOT NULL,
   `Lastname` VARCHAR(45) NOT NULL,
   `Email` VARCHAR(45) NOT NULL,
-  `Password` VARCHAR(45) NOT NULL,
+  `Password` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idUser`),
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) )
 ENGINE = InnoDB;
