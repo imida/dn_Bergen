@@ -1,21 +1,31 @@
 
 <?php
+
     $activitytype = $_GET["type"];
-    echo 'du har valgt aktivitetstype 1: ' . $activitytype;
-        ?>
+    try {
+        require 'database.php';
+        $sql = "select * from Activity where Activitytype_idActivitytype=? order by idActivity";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $activitytype);
+        $stmt->execute();
 
-<div class="row">
+        $resultObj = $stmt->get_result();
+       
+        if ($resultObj->num_rows > 0) {
+            echo '<div class="row">';
 
-  <div class="column">
+            while ($row = $resultObj->fetch_assoc()) {
+                echo '<div class = "column">';
+                echo '<h2>' . $row["Header"] . '</h2>';
+                echo '<p>' . $row["Text"] . '</p></div>';
+            }
+            echo '</div>';
+        }
 
-    <h2>1</h2>
-    <p>hei</p>
-  </div>
-  
-  <div class="column">
-    <h2>2</h2>
-    <p>hei igjen</p>
-  </div>
-  
-  </div> 
-
+        $stmt->close();
+        $connection->close();
+        
+    } catch (Exception $ex) {
+        echo 'Exception occurred ' . $ex->getTraceAsString();
+    }
+?>

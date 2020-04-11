@@ -10,16 +10,17 @@ if (isset($_POST['signup'])) {
     $passwordRepeat = $_POST['pwdrep'];
     $hashedPwd = '';
 
-    /* sjekker om alle feltene er fylt ut */
+    /* Sjekker om alle feltene er fylt ut */
     if (empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($passwordRepeat)) {
         header("Location: ../index.php?error=emptyfields&uid=" . $username . "&mail=" . $email);
         exit();
     }
-    /* sjekker at email adressen bare består av gyldige tegn */ else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    /* Sjekker at email adressen bare består av gyldige tegn */ 
+    else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         header("Location: ../index.php?error=invalidmail&uid=" . $firstname);
         exit();
     }
-    /* sjekker om passord og det gjantakende passordet er det samme */ else if ($password !== $passwordRepeat) {
+    /* Sjekker om passord og det gjantakende passordet er det samme */ else if ($password !== $passwordRepeat) {
         header("Location: ../index.php?error=passwordcheckuid" . $username . "&email=" . $email);
         exit();
     } else {
@@ -43,6 +44,7 @@ if (isset($_POST['signup'])) {
                 $stmt->close();
  
                 /* Emailen finnes ikke fra før av og databasen blir oppdatert */
+                /* Passordet blir kryptert */
                 $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
                 $sql_insert = "INSERT INTO `User` (`Firstname`, `Lastname`, `Email`, `Password`) VALUES (?, ?, ?, ?)";
                 $stmt_insert = $connection->prepare($sql_insert);
