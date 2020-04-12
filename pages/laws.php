@@ -6,7 +6,7 @@
 
         <h2>Åndsverksloven</h2>
         <p> Lovens formål er å beskytte opphavsrettighetene til den som har laget produktet. Det vil si at man ikke kan bruke materialet fra en annen uten å vise hvor det kom fra eller referere til opphaveren. 
-            F.eks ifølge §23 (eneretten til fotografiske bilder) så må man ha med navn på fotografen om man bruker fotografiske bilder. Ifølge §79 (straff) kan man bli straffet med bot og fengsel i inntil 1 år om man offentliggjør et bildet uten opphaverens navn eller samtykke. Dette gjelder også ved bruk av litterære og fakutlære 
+            F.eks ifølge §23 (eneretten til fotografiske bilder) så må man ha med navn på fotografen om man bruker fotografiske bilder. Ifølge §79 (straff) kan man bli straffet med bot og fengsel i inntil 1 år om man offentliggjør et bildet uten opphaverens navn eller samtykke. Dette gjelder også ved bruk av skriftlige og faktabaserte dokumenter eller kilder. 
             Reglenes virkeområde er norske statsborgere, folk som er bosatt i Norge og selskaper som enten har styre eller etablering i landet.
         </p> 
 

@@ -7,5 +7,7 @@
             På denne siden kan du få informasjon om noen aktiviteter, som fjell, restauranter og severdigheter, i Bergen og se værmeldingen for den kommende uken. Det er også mulig å lage en aktivitetsplan med aktiviteter og når du ønsker å gjennomføre de.
         </p> 
 
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/YXdtkfnuApY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    
     </div>  
 </div> 
