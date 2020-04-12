@@ -233,8 +233,4 @@ drop table Activity;
 set foreign_key_checks = 1;
 */
 
-/*
-drop table Home;
-drop table User;
-drop table Weather;
-*/
+/*drop table Userplan;*/

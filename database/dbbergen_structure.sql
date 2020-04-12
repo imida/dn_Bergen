@@ -65,8 +65,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bergendb`.`Userplan` (
   `idUserplan` INT NOT NULL AUTO_INCREMENT,
-  `Date` VARCHAR(45) NULL,
-  `Userplancol` VARCHAR(45) NULL,
+  `Date` DATE NULL,
   `Activity_idActivity` INT NOT NULL,
   `User_idUser` INT NOT NULL,
   PRIMARY KEY (`idUserplan`, `Activity_idActivity`, `User_idUser`),
@@ -84,29 +83,6 @@ CREATE TABLE IF NOT EXISTS `bergendb`.`Userplan` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `bergendb`.`Home`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bergendb`.`Home` (
-  `idHome` INT NOT NULL,
-  `Tittle` VARCHAR(45) NULL,
-  `Text` LONGTEXT NULL,
-  `Sound` VARCHAR(45) NULL,
-  PRIMARY KEY (`idHome`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `bergendb`.`Weather`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bergendb`.`Weather` (
-  `idWeather` INT NOT NULL,
-  `Tittle` VARCHAR(45) NULL,
-  `Text` LONGTEXT NULL,
-  `Video` VARCHAR(45) NULL,
-  PRIMARY KEY (`idWeather`))
-ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
