@@ -65,7 +65,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bergendb`.`Userplan` (
   `idUserplan` INT NOT NULL AUTO_INCREMENT,
-  `Date` DATE NULL,
+  `ActivityDate` DATE NULL,
   `Activity_idActivity` INT NOT NULL,
   `User_idUser` INT NOT NULL,
   PRIMARY KEY (`idUserplan`, `Activity_idActivity`, `User_idUser`),

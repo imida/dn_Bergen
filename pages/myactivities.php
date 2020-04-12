@@ -1,15 +1,16 @@
 
 <?php
-/* Henter ut hvilken aktivitetstype brukeren spør etter i databasen ved hjelp av Activitytype */
-    $activitytype = $_GET["type"];
+/* henter aktivitetsplanen fra pålogget bruker */
+    $userid = $_SESSION['idUser'];
+    
     try {
         /* Oppretter forbindelse med databasen */
         require 'database.php';
         /* Spørringen som henter ut alle aktivitene i aktivitetstypen. "?" er en variabel som blir 
            satt utifra hvilken aktivitet brukeren trykkerpå i navigasjonsbaren */
-        $sql = "select * from Activity where Activitytype_idActivitytype=? order by idActivity";
+        $sql = "select * from userplan where User_iduser=? order by activitydate";
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("i", $activitytype);
+        $stmt->bind_param("i", $userid);
         $stmt->execute();
 
         $resultObj = $stmt->get_result();
@@ -47,3 +48,4 @@
         echo 'Exception occurred ' . $ex->getTraceAsString();
     }
 ?>
+

@@ -14,21 +14,3 @@ if ($connection->connect_errno)
 {
     exit("failed; ".$connection->connect_error); 
 }
-/*
-$query = "select * from Activitytype order by idActivitytype";
-$resultObj = $connection->query($query);
-
-if ($resultObj->num_rows >0) 
-{ 
-    while ($singleRowFromQuery =$resultObj->fetch_assoc())
-    {
-        print_r($singleRowFromQuery);
-    }
-}  
-    
-echo "connected";
-
-$connection->close();
-
-*/
-
