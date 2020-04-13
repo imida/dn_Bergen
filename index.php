@@ -26,6 +26,12 @@
             <a href="?page=activities&type=3">Fjell</a>
             <a href="?page=weather">Vær og klima</a>
             <a href="?page=map">Kart</a>
+        <?php
+        if (isset($_SESSION['idUser'])) { 
+            echo '<a href="?page=myactivities">Mine aktiviteter</a>';
+        }
+        ?>            
+            
             <a href="?page=laws" style="float:right">Lover</a>
 <?php
 echo '<a href="' . $loginout_href . '" style="float:right">' . $loginout_text . '</a>';
@@ -53,6 +59,8 @@ echo '<a href="' . $loginout_href . '" style="float:right">' . $loginout_text . 
                 include 'pages/activities.php';
             } elseif ($page == "weather") {
                 include 'pages/weather/yr.php';
+            } elseif ($page == "myactivities") {
+                include 'pages/myactivities.php';
             } elseif ($page == "laws") {
                 include 'pages/laws.php';
             } elseif ($page == "logout") {

@@ -8,7 +8,16 @@
         require 'database.php';
         /* Spørringen som henter ut alle aktivitene i aktivitetstypen. "?" er en variabel som blir 
            satt utifra hvilken aktivitet brukeren trykkerpå i navigasjonsbaren */
-        $sql = "select * from userplan where User_iduser=? order by activitydate";
+        $sql = "select up.idUserplan
+                , at.Menutext
+                , a.Header
+                , up.activitydate
+           from userplan up
+              , Activity a
+              , Activitytype at
+           where up.Activity_idActivity = a.idActivity
+             and a.Activitytype_idActivitytype = at.idActivitytype
+             and up.User_iduser = 3 order by activitydate";
         $stmt = $connection->prepare($sql);
         $stmt->bind_param("i", $userid);
         $stmt->execute();
@@ -19,22 +28,32 @@
         if ($resultObj->num_rows > 0) {
             echo '<div class="row">';
             echo '<div class = "column">'; 
-            echo '<table>';
+            echo '<table style="width: 70%;">';
+            /* t står for table, r står for row, h står for heading. 
+             * Dette utgjør overskriftsraden i tabellen */ 
+            echo '<tr style="background-color: rgb(0, 119, 179); color: white;">';
+            echo '<th>Type</th>';
+            echo '<th>Aktivitet</th>';
+            echo '<th>Dato</th>';
+            /*nbsp = no breaking space, og gir en tom celle*/
+            echo '<th>&nbsp;</th>';
+            echo '</tr>';
             
             while ($row = $resultObj->fetch_assoc()) {
-                
+              /* t står for table, r står for row, d står for data. 
+             * Dette utgjør verdiene i tabellen som blir hentet fra databasen */    
                 echo '<tr>';
-                echo '<td><img src="resources/bryggen.jpg" height="100px" ></td>';
-                echo '<td><h2>' . $row["Header"] . '</h2>';
-                echo '<p>' . $row["Text"] . '</p></div></td>';
+                echo '<td>' . $row["Menutext"]. '</td>';
+                echo '<td>' . $row["Header"]. '</td>';
+                echo '<td>' . $row["activitydate"]. '</td>';
+ 
                 echo '<td>';
                 echo '<form action="activityplan/activityplan.action.php" method="post">';
-                echo '<input type="date" name="activitydate" placeholder="Dato">';
-                echo '<input type="hidden" name="activityid" value="'.$row["idActivity"].'">';
-                echo '<input type="hidden" name="userid" value="'.$_SESSION['idUser'].'">';
-                echo '<button type="submit" name="planactivity" value="planactivity">Planlegg</button>';
+                echo '<input type="hidden" name="userplanid" value="'.$row["idUserplan"].'">';
+                echo '<button type="submit" name="deleteactivity" value="deleteactivity">Slett</button>';
                 echo '</form>';
                 echo '</td>';
+                
                 echo '</tr>';
             }
             

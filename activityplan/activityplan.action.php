@@ -14,7 +14,7 @@ if (isset($_POST['planactivity'])) {
         exit();
         
     } else {
-        /* Sender informasjonen til databasen og ser om emailen finnes */
+        /* Sender informasjonen til databasen og setter inn aktiviteter i aktivitetsplanen */
         try {
             require '../database.php';
             
@@ -31,9 +31,30 @@ if (isset($_POST['planactivity'])) {
             echo 'Exception occurred ' . $ex->getTraceAsString();
         }
             
-        header("Location: ../index.php");
+        header("Location: ../index.php?page=myactivities");
 
     }
+} elseif (isset($_POST['deleteactivity'])) {
+     /* Sender informasjonen til databasen og sletter den valgte planlagte aktiviteten */
+        try {
+            $userplanid = $_POST['userplanid'];
+            require '../database.php';
+            
+            $sql_delete = "delete from `Userplan` where iduserplan=?";
+            $stmt_delete = $connection->prepare($sql_delete);
+            $stmt_delete->bind_param("i", $userplanid);
+
+            $stmt_delete->execute();
+
+            $stmt_delete->close();
+            $connection->close();
+  
+        } catch (Exception $ex) {
+            echo 'Exception occurred ' . $ex->getTraceAsString();
+        }
+            
+        header("Location: ../index.php?page=myactivities");
+
 } else {
     header("Location: ../index.php?error=planactivity");
     exit();
