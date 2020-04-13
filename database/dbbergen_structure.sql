@@ -83,6 +83,21 @@ CREATE TABLE IF NOT EXISTS `bergendb`.`Userplan` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `bergendb`.`Loginlog`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bergendb`.`Loginlog` (
+  `Logindate` VARCHAR(32) NOT NULL,
+  `User_idUser` INT NOT NULL,
+  `success` INT NOT NULL,
+  CONSTRAINT `fk_Loginlog_User1`
+    FOREIGN KEY (`User_idUser`)
+    REFERENCES `bergendb`.`User` (`idUser`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
