@@ -564,7 +564,7 @@ EOT
 EOT
         ;
     }
-
+    
     //Generer header for værdatatabellen
     public function getWeatherTableHeader(){
         $name=$this->yr_name;

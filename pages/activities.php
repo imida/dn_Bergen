@@ -23,7 +23,7 @@
             while ($row = $resultObj->fetch_assoc()) {
                 
                 echo '<tr>';
-                echo '<td><img src="resources/bryggen.jpg" height="100px" ></td>';
+                echo '<td><img src="' . $row["imageURL"] . '" height="100px" ></td>';
                 echo '<td><h2>' . $row["Header"] . '</h2>';
                 echo '<p>' . $row["Text"] . '</p></div></td>';
                 echo '<td>';
