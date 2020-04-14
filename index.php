@@ -33,6 +33,7 @@
         ?>            
             
         <a href="?page=about" style="float:right">Om</a>
+        <a href="?page=digital_samtid" style="float:right">Digital Samtidsoppgave</a>
         <a href="?page=laws" style="float:right">Lover</a>
 <?php
 echo '<a href="' . $loginout_href . '" style="float:right">' . $loginout_text . '</a>';
@@ -66,6 +67,8 @@ echo '<a href="' . $loginout_href . '" style="float:right">' . $loginout_text . 
                 include 'pages/laws.php';
             } elseif ($page == "about") {
                 include 'pages/about.php';
+            } elseif ($page == "digital_samtid") {
+                include 'pages/digital_samtid.php';
             } elseif ($page == "logout") {
                 session_destroy();
                 header("Location: index.php");
@@ -74,8 +77,7 @@ echo '<a href="' . $loginout_href . '" style="float:right">' . $loginout_text . 
             } else {
                 include 'pages/welcome.php';
             }
-            
-            ?>
+?>
 
     </body>
 </html>
