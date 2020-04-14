@@ -87,9 +87,11 @@ ENGINE = InnoDB;
 -- Table `bergendb`.`Loginlog`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `bergendb`.`Loginlog` (
+  `idLoginlog` INT NOT NULL AUTO_INCREMENT,
   `Logindate` VARCHAR(32) NOT NULL,
   `User_idUser` INT NOT NULL,
-  `success` INT NOT NULL,
+  `Success` INT NOT NULL,
+  PRIMARY KEY (`idLoginlog`),
   CONSTRAINT `fk_Loginlog_User1`
     FOREIGN KEY (`User_idUser`)
     REFERENCES `bergendb`.`User` (`idUser`)

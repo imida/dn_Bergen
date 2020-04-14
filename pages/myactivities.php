@@ -17,7 +17,7 @@
               , Activitytype at
            where up.Activity_idActivity = a.idActivity
              and a.Activitytype_idActivitytype = at.idActivitytype
-             and up.User_iduser = 3 order by activitydate";
+             and up.User_iduser = ? order by activitydate";
         $stmt = $connection->prepare($sql);
         $stmt->bind_param("i", $userid);
         $stmt->execute();

@@ -26,6 +26,9 @@ if (isset($_POST['signup'])) {
     } else {
         /* Sender informasjonen til databasen og ser om emailen finnes */
         try {
+            /* denne linjen viser hva passordet må inneholde */
+            $pattern = '/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A-Z]).{8,20}$/';
+           
             require '../database.php';
             $sql = "SELECT * FROM User WHERE Email=?";
             $stmt = $connection->prepare($sql);
@@ -40,7 +43,12 @@ if (isset($_POST['signup'])) {
                 $stmt->close();
                 $connection->close();
                 header("Location: ../index.php?error=userexist");
-            } else {
+                
+            /*sjekker at passordet er sikkert nok */
+            } elseif (!preg_match($pattern, $password)){
+                header("Location: ../index.php?page=signup&error=weakpassword");
+            } 
+            else {
                 $stmt->close();
  
                 /* Emailen finnes ikke fra før av og databasen blir oppdatert */

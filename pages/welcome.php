@@ -8,6 +8,13 @@
         </p> 
 
         <iframe width="560" height="315" src="https://www.youtube.com/embed/YXdtkfnuApY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    
+        
+        <p>
+        <p>Regn og fugler fra Bergen</p>
+            <audio controls>
+                <source src="resources/dn_bergen.m4a" type="audio/mp4">
+            </audio>
+        </p>
+        
     </div>  
 </div> 

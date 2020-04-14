@@ -32,7 +32,8 @@
         }
         ?>            
             
-            <a href="?page=laws" style="float:right">Lover</a>
+        <a href="?page=about" style="float:right">Om</a>
+        <a href="?page=laws" style="float:right">Lover</a>
 <?php
 echo '<a href="' . $loginout_href . '" style="float:right">' . $loginout_text . '</a>';
 ?>
@@ -44,7 +45,7 @@ echo '<a href="' . $loginout_href . '" style="float:right">' . $loginout_text . 
             $error = $_GET["error"];
 
             if (isset($_SESSION['Firstname'])) {
-                echo "<p>Hei, " . $_SESSION['Firstname'] . "</p>";
+                echo '<p style="float:right; padding-right: 40px;">Hei, ' . $_SESSION['Firstname'] . '</p>';
             }
 
             if (isset($error)) {
@@ -63,6 +64,8 @@ echo '<a href="' . $loginout_href . '" style="float:right">' . $loginout_text . 
                 include 'pages/myactivities.php';
             } elseif ($page == "laws") {
                 include 'pages/laws.php';
+            } elseif ($page == "about") {
+                include 'pages/about.php';
             } elseif ($page == "logout") {
                 session_destroy();
                 header("Location: index.php");
